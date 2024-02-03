@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="top-navbar">
       {isAuthenticated ?
         <ul>
-          <li><Link to="/">Accueil</Link></li>
+          <li><Link to="/home">Accueil</Link></li>
           <li><Link to="/inventory">Inventaire</Link></li>
           <li><Link to="/recipes">Recettes</Link></li>
           <li><LogoutButton /></li>

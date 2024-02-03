@@ -3,12 +3,14 @@
     font-size: x-large;
     font-family: Roboto;
 }
+
 p {
     font-size: 20px;
     font-family: Roboto;
     font-weight: 200;
 }
-.home-page {
+
+.info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,4 +18,11 @@ p {
     height: 100vh;
     background-color: white;
     margin-top: 20 px;
+}
+
+.home-page {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
