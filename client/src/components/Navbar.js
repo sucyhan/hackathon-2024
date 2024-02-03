@@ -1,14 +1,14 @@
-// TopNavbar.js
 import React from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <div className="top-navbar">
       <ul>
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/inventaire">Inventaire</a></li>
-        <li><a href="/recettes">Recettes</a></li>
+        <li><Link to="/">Accueil</Link></li>
+        <li><Link to="/inventory">Inventaire</Link></li>
+        <li><Link to="/recipes">Recettes</Link></li>
       </ul>
     </div>
   );
