@@ -1,58 +1,82 @@
 import React, { useState } from 'react';
+import './Inventory.css';
 
 const InventoryForm = () => {
-    const [ingredients, setIngredients] = useState([]);
-    const [name, setName] = useState('');
-    const [expirationDate, setExpirationDate] = useState('');
+  const [ingredient, setIngredient] = useState('');
+  const [foodType, setFoodType] = useState('Autre');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [inventoryList, setInventoryList] = useState([]);
 
-    const handleNameChange = (e) => {
-        setName(e.target.value);
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // if (!ingredient || !foodType || !expirationDate) {
+    //   alert('Veuillez remplir tous les champs.');
+    //   return;
+    // }
+
+    const newIngredient = {
+      ingredient,
+      foodType,
+      expirationDate,
     };
 
-    const handleExpirationDateChange = (e) => {
-        setExpirationDate(e.target.value);
-    };
+    setInventoryList([...inventoryList, newIngredient]);
 
-    const handleAddIngredient = () => {
-        if (name && expirationDate) {
-            const newIngredient = {
-                name,
-                expirationDate
-            };
+    setIngredient('');
+    setFoodType('');
+    setExpirationDate('');
+  };
 
-            setIngredients([...ingredients, newIngredient]);
-            setName('');
-            setExpirationDate('');
-        }
-    };
+  return (
+    <div>
+      <h2>Ajouter un aliment</h2>
+      <form onSubmit={handleFormSubmit}>
+        <label>
+          Aliment:
+          <input
+            type="text"
+            value={ingredient}
+            onChange={(e) => setIngredient(e.target.value)}
+          />
+        </label>
+        <label>
+          Catégorie Alimentaire:
+          <select value={foodType} onChange={(e) => setFoodType(e.target.value)}>
+            <option value="Fruit">Fruit</option>
+            <option value="Légume">Légume</option>
+            <option value="Produit Laitier">Produit Laitier</option>
+            <option value="Viande">Viande</option>
+            <option value="Boisson">Boisson</option>
+            <option value="Céréales">Céréale</option>
+            <option value="Légumineuses">Légumineuse</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </label>
+        <label>
+          Date d'expiration:
+          <input
+            type="date"
+            value={expirationDate}
+            onChange={(e) => setExpirationDate(e.target.value)}
+          />
+        </label>
+        <button type="submit">Ajouter</button>
+      </form>
 
-    return (
-        <div>
-            <h2>Add Ingredients</h2>
-            <input
-                type="text"
-                placeholder="Ingredient name"
-                value={name}
-                onChange={handleNameChange}
-            />
-            <input
-                type="date"
-                placeholder="Expiration date"
-                value={expirationDate}
-                onChange={handleExpirationDateChange}
-            />
-            <button onClick={handleAddIngredient}>Add</button>
-
-            <h2>Ingredients List</h2>
-            <ul>
-                {ingredients.map((ingredient, index) => (
-                    <li key={index}>
-                        {ingredient.name} - {ingredient.expirationDate}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+      <h2>Mes aliments</h2>
+      <div className="card-container">
+      {inventoryList.map((item, index) => (
+          <div className={"card"} key={index}>
+            <div className="table-row">
+              <div className="table-title">{item.ingredient}</div>
+              <div className="table-type">{item.foodType}</div>
+              <div className="table-date">{item.expirationDate}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default InventoryForm;
