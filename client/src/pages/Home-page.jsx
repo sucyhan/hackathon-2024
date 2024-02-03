@@ -9,7 +9,6 @@ function Homepage() {
             <img src={logo} alt="logo"></img>
             <p id="slogan">Sauver la planète, un repas à la fois</p>
             <p>Bienvenue sur notre site de réduction des déchets alimentaires!</p>
-
         </div>
     </>
     )
