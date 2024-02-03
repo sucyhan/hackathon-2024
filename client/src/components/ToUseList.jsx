@@ -1,6 +1,5 @@
 import { TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import Table from '@mui/material/Table';
-import { Link } from 'react-router-dom';
 import "./ToUseList.css";
 
 function ToUseList() {
@@ -19,13 +18,9 @@ function ToUseList() {
                         <TableCell>Nombre de jours restants</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    {data.length === 0 &&
-                        <div id="emptyMessage" >
-                            <p>Aucun élément dans votre liste</p>
-                            <Link id="emptyListLink" to="/inventory">Ajouter des aliments</Link>
-                        </div>}
-                </TableBody>
+                {data.length === 0 && (<TableRow><TableCell colSpan={6}>Aucun aliment trouvé</TableCell></TableRow>)}
+                {data.length !== 0 && (data.map())}
+
             </Table>
         </div>
     )

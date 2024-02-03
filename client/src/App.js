@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Homepage from './pages/Home-page';
 import LoginPage from './pages/Login-page.jsx';
@@ -16,7 +16,7 @@ function App() {
           <Route path="/inventory" element={<InventoryForm />} />
           <Route path="/recipes" element={<RecipeGenerator />} />
           <Route path="/home" element={<Homepage />} />
-          <Route path='/' element={<LoginPage/>}/>
+          <Route path='/' element={<LoginPage />} />
         </Routes>
       </div>
     </Router>
