@@ -4,8 +4,13 @@ import Homepage from './pages/Home-page';
 import LoginPage from './pages/Login-page.jsx';
 import Navbar from './components/Navbar.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import RecipeGenerator from './pages/Recipes.js';
+import RecipeGenerator from './pages/Recipes.jsx';
 import InventoryForm from './pages/Inventory.jsx';
+import axios from 'axios';
+import { useState } from 'react';
+import OPENAI_API_KEY from './config/openai.js';
+
+
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const API_KEY = "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";
