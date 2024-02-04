@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Inventory.css';
 import fruitsImage from '../assets/fruits.jpg';
 import vegetablesImage from '../assets/vegetables.jpg';
@@ -6,12 +6,25 @@ import dairyImage from '../assets/dairy.jpg';
 import meatImage from '../assets/meat.jpg';
 import cerealsImage from '../assets/cereals.jpg';
 import foodImage from '../assets/food.jpg';
+import { useAuth0 } from '@auth0/auth0-react';
+// import {addData} from '../services/inventory.service';
 
 const InventoryForm = () => {
   const [ingredient, setIngredient] = useState('');
   const [foodType, setFoodType] = useState("Autre");
   const [expirationDate, setExpirationDate] = useState('');
   const [inventoryList, setInventoryList] = useState([]);
+  const { user } = useAuth0();
+
+  // useEffect(() => {
+  //   const userInfo = user.email;
+  //   const newIngredient = {
+  //     ingredient,
+  //     foodType,
+  //     expirationDate,
+  //   };
+  //   addData(userInfo, newIngredient);
+  // }, [expirationDate, foodType, ingredient, user.email]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();

@@ -6,18 +6,21 @@ import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import { Service } from 'typedi';
 import { InventoryController } from "./controllers/inventory.controller";
+import { InventoryService } from "./services/inventory.service";
 
 @Service()
 export class Application {
     app: express.Application;
     readonly databaseService: DatabaseService;
+    readonly inventoryService: InventoryService;
     readonly inventoryController: InventoryController;
     private readonly internalError: number = StatusCodes.INTERNAL_SERVER_ERROR;
 
     constructor() {
         this.app = express();
         this.databaseService = new DatabaseService();
-        this.inventoryController = new InventoryController();
+        this.inventoryService = new InventoryService(this.databaseService);
+        this.inventoryController = new InventoryController(this.inventoryService);
 
         this.config();
         this.bindRoutes();
