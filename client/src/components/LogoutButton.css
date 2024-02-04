@@ -1,0 +1,21 @@
+.button-out{
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: roboto;
+    font-size: 20px;
+    padding: 10 px;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out; 
+}
+.button-out:hover{
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.button-out:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}

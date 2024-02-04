@@ -8,8 +8,8 @@ function ToUseList() {
 
 
     return (
-        <div>
-            <p>À utiliser au plus vite...</p>
+        <div className=''>
+            <p className='title'>À utiliser au plus vite...</p>
             <Table stickyHeader>
                 <TableHead>
                     <TableRow>

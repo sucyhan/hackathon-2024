@@ -1,3 +1,10 @@
+*{
+    font-family: roboto;
+}
+.title {
+    font-weight: bold;
+    font-size: 200%;
+}
 #emptyListLink {
     font-weight: bold;
     color: black;
