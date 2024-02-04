@@ -7,24 +7,37 @@ import meatImage from '../assets/meat.jpg';
 import cerealsImage from '../assets/cereals.jpg';
 import foodImage from '../assets/food.jpg';
 import { useAuth0 } from '@auth0/auth0-react';
-// import {addData} from '../services/inventory.service';
+import { addData, getData } from '../services/inventory.service';
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const InventoryForm = () => {
+  const queryClient = useQueryClient();
+  
   const [ingredient, setIngredient] = useState('');
   const [foodType, setFoodType] = useState("Autre");
   const [expirationDate, setExpirationDate] = useState('');
   const [inventoryList, setInventoryList] = useState([]);
   const { user } = useAuth0();
+  const { data, isFetched } = useQuery("inventory", async () => await getData(user.email), {
+    onSuccess: (data) => {
+      console.log(data);
+      return data;
+    }
+  });
 
-  // useEffect(() => {
-  //   const userInfo = user.email;
-  //   const newIngredient = {
-  //     ingredient,
-  //     foodType,
-  //     expirationDate,
-  //   };
-  //   addData(userInfo, newIngredient);
-  // }, [expirationDate, foodType, ingredient, user.email]);
+  const mutation = useMutation(addData, {
+    onSuccess: () => {
+      console.log('invalidate query called');
+      queryClient.invalidateQueries('inventory');
+    }
+  })
+
+  useEffect(() =>{
+    if(isFetched && data) {
+      setInventoryList([...data]);
+    }
+  }, [data, isFetched]);
+
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +57,7 @@ const InventoryForm = () => {
     setIngredient('');
     setFoodType('Autre');
     setExpirationDate('');
+    mutation.mutate({user: user.email, ingredient: newIngredient});
   };
 
   const getCardBackground = (foodType) => {
