@@ -38,6 +38,7 @@ const InventoryForm = () => {
       foodType,
       expirationDate,
     };
+    console.log(process.env.MY_SECRET);
 
     setInventoryList([...inventoryList, newIngredient]);
 

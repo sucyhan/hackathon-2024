@@ -1,44 +1,53 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import OpenAI from 'openai';
 
-const RecipeGenerator = () => {
-    const [ingredients, setIngredients] = useState('');
-    const [recipes, setRecipes] = useState([]);
+const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY';
+new OpenAI({ apiKey: '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', dangerouslyAllowBrowser: true });
 
-    const handleInputChange = (e) => {
-        setIngredients(e.target.value);
-    };
+const ImageGenerator = () => {
+  const [inputWord, setInputWord] = useState('');
+  const [generatedImage, setGeneratedImage] = useState('');
 
-    const generateRecipes = () => {
-        // Here you can write the logic to generate recipes based on the user inputted ingredients
-        // You can make an API call to a recipe database or use a local data source
+  const handleGenerateImage = async () => {
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/engines/dall-e/completions', // Replace with the correct endpoint if available
+        {
+          prompt: `Generate an image based on ${inputWord}`,
+          // Add any other necessary parameters
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+          },
+        }
+      );
 
-        // For now, let's just split the ingredients by comma and create a recipe for each ingredient
-        const ingredientList = ingredients.split(',');
+      setGeneratedImage(response.data.choices[0].image); // Adjust based on the actual API response
+    } catch (error) {
+      console.error('Error generating image:', error);
+    }
+  };
 
-        const generatedRecipes = ingredientList.map((ingredient, index) => ({
-            id: index,
-            name: `Recipe with ${ingredient}`,
-            ingredients: [ingredient],
-        }));
-
-        setRecipes(generatedRecipes);
-    };
-
-    return (
+  return (
+    <div>
+      <h1>Image Generator</h1>
+      <input
+        placeholder="Enter a word for image generation"
+        value={inputWord}
+        onChange={(e) => setInputWord(e.target.value)}
+      />
+      <button onClick={handleGenerateImage}>Generate Image</button>
+      {generatedImage && (
         <div>
-            <input type="text" value={ingredients} onChange={handleInputChange} />
-            <button onClick={generateRecipes}>Generate Recipes</button>
-
-            <ul>
-                {recipes.map((recipe) => (
-                    <li key={recipe.id}>
-                        <h3>{recipe.name}</h3>
-                        <p>Ingredients: {recipe.ingredients.join(', ')}</p>
-                    </li>
-                ))}
-            </ul>
+          <h2>Generated Image</h2>
+          <img src={generatedImage} alt="Generated Image" />
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
-export default RecipeGenerator;
+export default ImageGenerator;
