@@ -1,13 +1,9 @@
-/* *{
+*{
     font-family: roboto;
 }
 .title {
     font-weight: bold;
     font-size: 200%;
-}
-#emptyListLink {
-    font-weight: bold;
-    color: black;
 }
 
 #emptyMessage {
@@ -16,9 +12,3 @@
     align-items: center;
     justify-content: center;
 }
-
-a:hover{
-    color: green;
-    border-radius: 5px;
-    transition: 0.5s;
-  } */
