@@ -4,11 +4,11 @@ import Homepage from './pages/Home-page';
 import LoginPage from './pages/Login-page.jsx';
 import Navbar from './components/Navbar.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import RecipeGenerator from './pages/Recipes.js';
+import RecipeGenerator from './pages/Recipes.jsx';
 import InventoryForm from './pages/Inventory.jsx';
-import OPENAI_API_KEY from './openai-test.js';
 import axios from 'axios';
 import { useState } from 'react';
+import OPENAI_API_KEY from './config/openai.js';
 
 
 

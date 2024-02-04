@@ -71,21 +71,6 @@
       }
     }
   
-  /* button {
-    background-color: #4caf50;
-    width: 80px;
-    border-radius: 7px;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #419445;
-    transform: scale(1.1);
-  } */
-  
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -110,10 +95,6 @@
     transform: scale(1.1);
   }
 
-
-
-
-  
   .table-header {
     display: flex;
     justify-content: space-between;

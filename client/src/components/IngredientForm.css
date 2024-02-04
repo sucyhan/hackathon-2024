@@ -1,0 +1,23 @@
+.ingredient-input {
+  width: 50%;
+  margin-top: 20px;
+  border-radius: 25px;
+  margin-right: 5px;
+  border: 2px solid #757575;
+  height: 50px;
+  font-size: 15px;
+}
+.search {
+    font-size: 20px;
+    padding: 8px;
+    background-color: #4caf50;
+    height: 120%;
+    border: 1px solid #2d672f;
+    border-radius: 5px;
+  }
+.search:hover {
+    background-color: #3d8c40;
+}
+
+  
+  
