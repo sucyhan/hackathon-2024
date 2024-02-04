@@ -1,36 +1,29 @@
-import { TableBody, TableCell, TableHead, TableRow } from '@mui/material';
-import Table from '@mui/material/Table';
-import "./ToUseList.css";
+// import { TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+// import Table from '@mui/material/Table';
+// import "./ToUseList.css";
 
-function ToUseList() {
+// function ToUseList() {
 
-    let data = [];
+//     let data = [];
 
 
-    return (
-        <div className=''>
-            <p className='title'>À utiliser au plus vite...</p>
-            <Table stickyHeader>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Aliment</TableCell>
-                        <TableCell>Date d'expiration</TableCell>
-                        <TableCell>Nombre de jours restants</TableCell>
-                    </TableRow>
-                </TableHead>
-                {data.length !== 0 ? 
-                <TableBody>
-                    {data.map((entrie) => {
-                        return <>
-                        </>
-                    })
-                    }
-                </TableBody>
-                : (<TableRow><TableCell colSpan={6}>Aucun aliment trouvé</TableCell></TableRow>)}
+//     return (
+//         <div className=''>
+//             <p className='title'>À utiliser au plus vite...</p>
+//             <Table stickyHeader>
+//                 <TableHead>
+//                     <TableRow>
+//                         <TableCell>Aliment</TableCell>
+//                         <TableCell>Date d'expiration</TableCell>
+//                         <TableCell>Nombre de jours restants</TableCell>
+//                     </TableRow>
+//                 </TableHead>
+//                 {data.length === 0 && (<TableRow><TableCell colSpan={6}>Aucun aliment trouvé</TableCell></TableRow>)}
+//                 {data.length !== 0 && (data.map())}
 
-            </Table>
-        </div>
-    )
-}
+//             </Table>
+//         </div>
+//     )
+// }
 
-export default ToUseList;
+// export default ToUseList;
