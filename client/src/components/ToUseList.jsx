@@ -18,8 +18,15 @@ function ToUseList() {
                         <TableCell>Nombre de jours restants</TableCell>
                     </TableRow>
                 </TableHead>
-                {data.length === 0 && (<TableRow><TableCell colSpan={6}>Aucun aliment trouvé</TableCell></TableRow>)}
-                {data.length !== 0 && (data.map())}
+                {data.length !== 0 ? 
+                <TableBody>
+                    {data.map((entrie) => {
+                        return <>
+                        </>
+                    })
+                    }
+                </TableBody>
+                : (<TableRow><TableCell colSpan={6}>Aucun aliment trouvé</TableCell></TableRow>)}
 
             </Table>
         </div>
