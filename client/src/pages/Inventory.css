@@ -32,9 +32,49 @@
   box-sizing: border-box;
   margin-left: 10px;
     }
+
+    .button {
+      font-size: 20px;
+      font-weight: 200;
+      letter-spacing: 1px;
+      padding: 13px 20px 13px;
+      outline: 0;
+      border: 1px solid black;
+      cursor: pointer;
+      position: relative;
+      background-color: rgba(0, 0, 0, 0);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .button:after {
+      content: "";
+      background-color: #4caf50;
+      width: 100%;
+      z-index: -1;
+      position: absolute;
+      height: 100%;
+      top: 7px;
+      left: 7px;
+      transition: 0.2s;
+    }
+    
+    .button:hover:after {
+      top: 0px;
+      left: 0px;
+    }
+    
+    @media (min-width: 768px) {
+      .button {
+        padding: 13px 50px 13px;
+      }
+    }
   
-  button {
+  /* button {
     background-color: #4caf50;
+    width: 80px;
+    border-radius: 7px;
     color: white;
     padding: 10px;
     border: none;
@@ -42,8 +82,9 @@
   }
   
   button:hover {
-    background-color: #45a049;
-  }
+    background-color: #419445;
+    transform: scale(1.1);
+  } */
   
   .card-container {
     display: flex;
@@ -54,17 +95,24 @@
 
   .card {
     width: 300px;
+    height: 100px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: #fff;
+  }
+  
+  .card:hover {
     transition: 0.3s;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.215);
+    background-color: #fff;
+    transform: scale(1.1);
   }
 
-  .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
+
+
+
   
   .table-header {
     display: flex;
@@ -89,7 +137,9 @@
     font-weight: bold;
   }
 .table-date {
-    color: #4caf50
+    color: #357937;
+    font-weight: bold;
+    font-size: 110%;
 }
   
 .table-type {
