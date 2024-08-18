@@ -8,8 +8,8 @@ function LoginPage() {
             <img src={logo} alt="logo"></img>
             <p id="slogan">Sauver la planète, un repas à la fois</p>
             <p>Bienvenue sur notre site de réduction des déchets alimentaires!</p>
-            <p>Cliquez sur le bouton ci-dessous pour vous connecter:</p>
-            <LoginButton/>
+            {/* <p>Cliquez sur le bouton ci-dessous pour vous connecter:</p>
+            <LoginButton/> */}
         </div>
     )
 }
