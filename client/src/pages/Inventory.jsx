@@ -18,73 +18,66 @@ const InventoryForm = () => {
   const [expirationDate, setExpirationDate] = useState('');
   const [inventoryList, setInventoryList] = useState([]);
   const { user } = useAuth0();
-  const { data, isFetched } = useQuery("inventory", async () => await getData(user.email), {
-    onSuccess: (data) => {
-      console.log(data);
-      return data;
-    }
-  });
 
   const mutation = useMutation(addData, {
     onSuccess: () => {
       console.log('invalidate query called');
       queryClient.invalidateQueries('inventory');
     }
-  })
+  });
 
-  useEffect(() =>{
-    if(isFetched && data) {
-      setInventoryList([...data]);
+  useEffect(() => {
+    const storedList = localStorage.getItem('inventoryList');
+    if (storedList) {
+      setInventoryList(JSON.parse(storedList));
     }
-  }, [data, isFetched]);
+  }, []);
 
+  useEffect(() => {
+    localStorage.setItem('inventoryList', JSON.stringify(inventoryList));
+  }, [inventoryList]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // if (!ingredient || !foodType || !expirationDate) {
-    //   alert('Veuillez remplir tous les champs.');
-    //   return;
-    // }
 
     const newIngredient = {
       ingredient,
       foodType,
       expirationDate,
     };
-    console.log(process.env.MY_SECRET);
 
     setInventoryList([...inventoryList, newIngredient]);
 
     setIngredient('');
-    setFoodType('Autre');
+    setFoodType('Other');
     setExpirationDate('');
-    mutation.mutate({user: user.email, ingredient: newIngredient});
   };
 
   const getCardBackground = (foodType) => {
     switch(foodType) {
       case 'Fruit':
         return fruitsImage;
-      case 'Légume':
+      case 'Vegetable':
         return vegetablesImage;
-      case 'Produit Laitier':
+      case 'Dairy':
         return dairyImage;
-      case 'Viande':
+      case 'Meat':
         return meatImage;
-      case 'Céréales':
+      case 'Cereals':
         return cerealsImage;
-      case 'Autre':
+      case 'Other':
         return foodImage;
       default:
         return foodImage;
     }
   }
+
   return (
     <div>
-      <h2>Ajouter un aliment</h2>
+      <h2>Add food</h2>
       <form onSubmit={handleFormSubmit}>
         <label>
-          Aliment:
+          Food:
           <input
             type="text"
             value={ingredient}
@@ -92,41 +85,41 @@ const InventoryForm = () => {
           />
         </label>
         <label>
-          Catégorie Alimentaire:
+          Food Category:
           <select value={foodType} onChange={(e) => setFoodType(e.target.value)}>
             <option value="Fruit">Fruit</option>
-            <option value="Légume">Légume</option>
-            <option value="Produit Laitier">Produit Laitier</option>
-            <option value="Viande">Viande</option>
-            <option value="Céréales">Céréale</option>
-            <option value="Autre">Autre</option>
+            <option value="Vegetable">Vegetable</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Meat">Meat</option>
+            <option value="Cereal">Cereal</option>
+            <option value="Other">Other</option>
           </select>
         </label>
         <label>
-          Date d'expiration:
+        Expiration date:
           <input
             type="date"
             value={expirationDate}
             onChange={(e) => setExpirationDate(e.target.value)}
           />
         </label>
-        <button className='button' type="submit">Ajouter</button>
+        <button className='button' type="submit">Add</button>
       </form>
 
-      <h2>Mes aliments</h2>
-          <div className="card-container">
-              {inventoryList.map((item, index) => (
-              <div className="card" key={index} style={{ 
-                backgroundImage: `url(${getCardBackground(item.foodType)})`
-              }}>
-               <div className="table-row">
-                 <div className="table-title">{item.ingredient}</div>
-                 <div className="table-type">{item.foodType}</div>
-                 <div className="table-date">{item.expirationDate}</div>
-                </div>
-               </div>
-                    ))}
-                  </div>
+      <h2>My food</h2>
+      <div className="card-container">
+        {inventoryList.map((item, index) => (
+          <div className="card" key={index} style={{ 
+            backgroundImage: `url(${getCardBackground(item.foodType)})`
+          }}>
+            <div className="table-row">
+              <div className="table-title">{item.ingredient}</div>
+              <div className="table-type">{item.foodType}</div>
+              <div className="table-date">{item.expirationDate}</div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

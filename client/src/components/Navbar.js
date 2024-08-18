@@ -9,9 +9,9 @@ const Navbar = () => {
   return (
     <div className="top-navbar">
         <ul>
-          <li><Link to="/home">Accueil</Link></li>
-          <li><Link to="/inventory">Inventaire</Link></li>
-          <li><Link to="/recipes">Recettes</Link></li>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link to="/inventory">Inventory</Link></li>
+          <li><Link to="/recipes">Recipes</Link></li>
           {/* <li><LogoutButton /></li> */}
         </ul>
         {/* <ul>

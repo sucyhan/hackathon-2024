@@ -20,7 +20,7 @@ const RecipeGenerator = () => {
 
   return (
     <div>
-        <h1>Recherche de recettes</h1>
+        <h1>Search recipes</h1>
       <IngredientForm onSearch={searchRecipes} />
       <RecipeList recipes={recipes} />
     </div>

@@ -14,9 +14,9 @@ const IngredientForm = ({ onSearch }) => {
         type="text"
         value={ingredient}
         onChange={(e) => setIngredient(e.target.value)}
-        placeholder="Entrer un ingrédient..."
+        placeholder="Seperate food with spaces..."
       />
-      <button className="search" type="submit">Search</button>
+      <button className="button" type="submit">Search</button>
     </form>
   );
 };

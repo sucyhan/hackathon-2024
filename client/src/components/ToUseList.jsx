@@ -24,18 +24,18 @@ function ToUseList() {
 
     return (
         <div className=''>
-            <p className='title'>À utiliser au plus vite...</p>
+            <p className='title'>To be used as soon as possible...</p>
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 <TableContainer sx={{ maxHeight: 440 }}>
                     <Table stickyHeader>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Aliment</TableCell>
+                                <TableCell>Food</TableCell>
                                 <TableCell>Type</TableCell>
-                                <TableCell>Date d'expiration</TableCell>
+                                <TableCell>Expiration date</TableCell>
                             </TableRow>
                         </TableHead>
-                        {!isFetched && inventoryList.length === 0 ? (<TableRow><TableCell colSpan={6}>Aucun aliment trouvé</TableCell></TableRow>) :
+                        {!isFetched && inventoryList.length === 0 ? (<TableRow><TableCell colSpan={6}>No food found</TableCell></TableRow>) :
                             (<TableBody>
                                 {inventoryList.map((item, index) => (
                                     <TableRow key={index}>
